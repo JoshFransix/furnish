@@ -16,18 +16,32 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+body,
+.transition-element {
+  transition: all 0.3s ease-in-out;
+}
+
+.landing-image {
+  background: url("/landing-image.jpg") no-repeat center center/cover;
+}
+
+.overlay {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(var(--background-end-rgb), 0.6)
+    )
+    rgba(var(--background-start-rgb), 0.4);
 }

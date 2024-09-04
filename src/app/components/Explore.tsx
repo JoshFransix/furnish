@@ -1,0 +1,153 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Product from "./Product";
+
+const Explore = ({ products }) => {
+  const [selectedFilter, setSelectedFilter] = useState<string>("category");
+  const [catValue, setCatValue] = useState<string>("all");
+  const [priceValue, setPriceValue] = useState<string>("low-high");
+  const [categoryOptions] = useState<array>([
+    {
+      label: "All",
+      value: "all",
+    },
+    {
+      label: "Bedroom",
+      value: "bed",
+    },
+    {
+      label: "Dining Room",
+      value: "dining",
+    },
+    {
+      label: "Sitting Room",
+      value: "sitting",
+    },
+    {
+      label: "Living Room",
+      value: "living",
+    },
+  ]);
+  const [priceOptions] = useState<array>([
+    {
+      label: "Low to High",
+      value: "low-high",
+    },
+    {
+      label: "High to Low",
+      value: "high-low",
+    },
+  ]);
+
+  const [activeProducts, setActiveProducts] = useState<array>(products);
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setSelectedFilter(event.target.value as string);
+  };
+
+  const handleCat = (event: React.SyntheticEvent, newValue: string) => {
+    setCatValue(newValue as string);
+  };
+  const handlePrice = (event: React.SyntheticEvent, newValue: string) => {
+    setPriceValue(newValue as string);
+  };
+
+  useEffect(() => {
+    if (selectedFilter === "price") {
+      const filteredProducts = products;
+      priceValue === "low-high"
+        ? filteredProducts.sort(
+            (a, b) => parseFloat(b.price) - parseFloat(a.price)
+          )
+        : filteredProducts.sort(
+            (a, b) => parseFloat(a.price) - parseFloat(b.price)
+          );
+      setActiveProducts(filteredProducts as Array);
+    }
+  }, [selectedFilter, priceValue]);
+
+  useEffect(() => {
+    if (selectedFilter === "category") {
+      if (catValue === "all") {
+        setActiveProducts(products as Array);
+      } else {
+        let filteredProducts = products.filter(
+          (product: Object) => product.category === catValue
+        );
+        setActiveProducts(filteredProducts as Array);
+      }
+    }
+  }, [selectedFilter, catValue]);
+
+  return (
+    <div className="w-10/12 mx-auto py-9">
+      {/* Explore Section */}
+
+      <div className="flex justify-between items-center">
+        <h1 className="text-primary-100 font-semibold text-3xl transition-element">
+          Explore By {selectedFilter}
+        </h1>
+
+        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={selectedFilter}
+            placeholder="Select..."
+            onChange={handleChange}
+          >
+            <MenuItem value="category">Category</MenuItem>
+            <MenuItem value="price">Price</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
+
+      {/* Tab Filters */}
+      <div className="py-4">
+        {selectedFilter === "category" ? (
+          <Tabs value={catValue} onChange={handleCat}>
+            {categoryOptions.map((option) => (
+              <Tab
+                key={option.value}
+                label={option.label}
+                value={option.value}
+              />
+            ))}
+          </Tabs>
+        ) : (
+          <Tabs value={priceValue} onChange={handlePrice}>
+            {priceOptions.map((option) => (
+              <Tab
+                key={option.value}
+                label={option.label}
+                value={option.value}
+              />
+            ))}
+          </Tabs>
+        )}
+      </div>
+
+      <div className="grid grid-cols-4 gap-5">
+        {activeProducts.map((product) => (
+          <Product
+            key={product.id}
+            title={product.name}
+            description={product.description}
+            color={product.color}
+            price={product.price}
+            image={product.image}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Explore;
