@@ -7,8 +7,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import LoadingButton from "@mui/lab/LoadingButton";
 
 type DeleteProps = {
-  productId: string;
-  open: boolean;
+  productId: String;
+  open: Boolean;
   handleClose: () => void;
   deleteItem: () => void;
 };

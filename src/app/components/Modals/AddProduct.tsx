@@ -15,10 +15,10 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 
 interface AddProductProps {
-  open: boolean;
+  open: Boolean;
   handleClose: () => void;
   uploadProduct: () => void;
-  isLoading: boolean;
+  isLoading: Boolean;
 }
 
 const AddProduct = ({

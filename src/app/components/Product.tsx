@@ -8,12 +8,12 @@ import PreviewIcon from "@mui/icons-material/Preview";
 import DeleteProduct from "./Modals/DeleteProduct";
 
 interface ProductProps {
-  id: string;
-  title: string;
-  image: string;
-  description: string;
-  price: number;
-  color?: string; // Optional prop to set custom color for product background. Default is #CAF3E5.
+  id: String;
+  title: String;
+  image: String;
+  description: String;
+  price: Number;
+  color?: String; // Optional prop to set custom color for product background. Default is #CAF3E5.
   deleteItem: () => void;
 }
 
