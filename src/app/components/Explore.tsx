@@ -20,7 +20,7 @@ const Explore = ({ products, loading, deleteItem }: ExploreProps) => {
   const [selectedFilter, setSelectedFilter] = useState<String>("category");
   const [catValue, setCatValue] = useState<String>("all");
   const [priceValue, setPriceValue] = useState<String>("low-high");
-  const [categoryOptions] = useState<Array>([
+  const [categoryOptions] = useState<Array<Object>>([
     {
       label: "All",
       value: "all",
@@ -42,7 +42,7 @@ const Explore = ({ products, loading, deleteItem }: ExploreProps) => {
       value: "living",
     },
   ]);
-  const [priceOptions] = useState<Array>([
+  const [priceOptions] = useState<Array<Object>>([
     {
       label: "Low to High",
       value: "low-high",

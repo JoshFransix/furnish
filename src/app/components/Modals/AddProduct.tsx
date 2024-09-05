@@ -27,7 +27,7 @@ const AddProduct = ({
   uploadProduct,
   isLoading,
 }: AddProductProps) => {
-  const [categoryOptions] = useState<Array>([
+  const [categoryOptions] = useState<Array<Object>>([
     {
       label: "Bedroom",
       value: "bed",

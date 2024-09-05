@@ -15,7 +15,7 @@ const Landing = () => {
   const [loading, setIsLoading] = useState<Boolean>(false);
   const [open, setOpen] = useState<Boolean>(false);
 
-  const [imageOptions] = useState<Array>([
+  const [imageOptions] = useState<Array<String>>([
     "arm-chair.png",
     "mattress.png",
     "dining-chair.png",
