@@ -71,7 +71,7 @@ const Explore = ({ products, loading, deleteItem }: ExploreProps) => {
       const filteredProducts = products;
       priceValue === "low-high"
         ? filteredProducts.sort(
-            (a, b: Object) => parseFloat(b.price) - parseFloat(a.price)
+            (a, b) => parseFloat(b.price) - parseFloat(a.price)
           )
         : filteredProducts.sort(
             (a, b) => parseFloat(a.price) - parseFloat(b.price)
@@ -86,7 +86,7 @@ const Explore = ({ products, loading, deleteItem }: ExploreProps) => {
         setActiveProducts(products as Array);
       } else {
         let filteredProducts = products.filter(
-          (product: Object) => product.category === catValue
+          (product) => product.category === catValue
         );
         setActiveProducts(filteredProducts as Array);
       }

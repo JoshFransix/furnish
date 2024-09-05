@@ -58,9 +58,7 @@ const Landing = () => {
   };
 
   const deleteItem = async (id: String) => {
-    let newProducts = await products.filter(
-      (product: Object) => product.id !== id
-    );
+    let newProducts = await products.filter((product) => product.id !== id);
     setProducts(newProducts as Array);
 
     setTimeout(() => {
