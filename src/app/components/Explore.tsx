@@ -10,7 +10,13 @@ import Tab from "@mui/material/Tab";
 import Skeleton from "@mui/material/Skeleton";
 import Product from "./Product";
 
-const Explore = ({ products, loading, deleteItem }) => {
+interface ExploreProps {
+  products: array;
+  loading: boolean;
+  deleteItem: () => void;
+}
+
+const Explore = ({ products, loading, deleteItem }: ExploreProps) => {
   const [selectedFilter, setSelectedFilter] = useState<string>("category");
   const [catValue, setCatValue] = useState<string>("all");
   const [priceValue, setPriceValue] = useState<string>("low-high");

@@ -14,7 +14,19 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 
-const AddProduct = ({ open, handleClose, uploadProduct, isLoading }) => {
+interface AddProductProps {
+  open: boolean;
+  handleClose: () => void;
+  uploadProduct: () => void;
+  isLoading: boolean;
+}
+
+const AddProduct = ({
+  open,
+  handleClose,
+  uploadProduct,
+  isLoading,
+}: AddProductProps) => {
   const [categoryOptions] = useState<array>([
     {
       label: "Bedroom",
