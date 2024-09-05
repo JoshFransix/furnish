@@ -11,7 +11,7 @@ import Skeleton from "@mui/material/Skeleton";
 import Product from "./Product";
 
 interface ExploreProps {
-  products: Array;
+  products: Array<Object>;
   loading: Boolean;
   deleteItem: () => void;
 }
