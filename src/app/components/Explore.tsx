@@ -7,9 +7,10 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import Skeleton from "@mui/material/Skeleton";
 import Product from "./Product";
 
-const Explore = ({ products }) => {
+const Explore = ({ products, loading, deleteItem }) => {
   const [selectedFilter, setSelectedFilter] = useState<string>("category");
   const [catValue, setCatValue] = useState<string>("all");
   const [priceValue, setPriceValue] = useState<string>("low-high");
@@ -46,7 +47,7 @@ const Explore = ({ products }) => {
     },
   ]);
 
-  const [activeProducts, setActiveProducts] = useState<array>(products);
+  const [activeProducts, setActiveProducts] = useState<array>(products | []);
 
   const handleChange = (event: SelectChangeEvent) => {
     setSelectedFilter(event.target.value as string);
@@ -64,7 +65,7 @@ const Explore = ({ products }) => {
       const filteredProducts = products;
       priceValue === "low-high"
         ? filteredProducts.sort(
-            (a, b) => parseFloat(b.price) - parseFloat(a.price)
+            (a, b: Object) => parseFloat(b.price) - parseFloat(a.price)
           )
         : filteredProducts.sort(
             (a, b) => parseFloat(a.price) - parseFloat(b.price)
@@ -87,11 +88,11 @@ const Explore = ({ products }) => {
   }, [selectedFilter, catValue]);
 
   return (
-    <div className="w-10/12 mx-auto py-9">
+    <div className="w-[94%] mx-auto py-9 lg:w-10/12">
       {/* Explore Section */}
 
       <div className="flex justify-between items-center">
-        <h1 className="text-primary-100 font-semibold text-3xl transition-element">
+        <h1 className="text-primary-100 font-semibold text-lg transition-element xl:text-3xl lg:text-2xl md:text-xl">
           Explore By {selectedFilter}
         </h1>
 
@@ -134,17 +135,30 @@ const Explore = ({ products }) => {
         )}
       </div>
 
-      <div className="grid grid-cols-4 gap-5">
-        {activeProducts.map((product) => (
-          <Product
-            key={product.id}
-            title={product.name}
-            description={product.description}
-            color={product.color}
-            price={product.price}
-            image={product.image}
-          />
-        ))}
+      <div className="grid grid-cols-1 gap-5 2xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
+        {loading
+          ? Array.from({ length: 8 }).map((_, index) => (
+              <Skeleton
+                animation="wave"
+                key={index}
+                variant="rect"
+                height={450}
+                sx={{ borderRadius: "20px" }}
+              />
+            ))
+          : !loading &&
+            activeProducts?.map((product) => (
+              <Product
+                id={product.id}
+                key={product.id}
+                title={product.name}
+                description={product.description}
+                color={product.color}
+                price={product.price}
+                image={product.image}
+                deleteItem={deleteItem}
+              />
+            ))}
       </div>
     </div>
   );

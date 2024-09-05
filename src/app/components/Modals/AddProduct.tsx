@@ -49,7 +49,7 @@ const AddProduct = ({ open, handleClose, uploadProduct, isLoading }) => {
       name,
       description,
       color,
-      price,
+      price: Number(price || 0),
       category,
     };
     uploadProduct(data);
@@ -64,7 +64,7 @@ const AddProduct = ({ open, handleClose, uploadProduct, isLoading }) => {
 
   return (
     <div>
-      <Dialog open={open} onClose={handleClose} fullWidth persistent>
+      <Dialog open={open} onClose={handleClose} fullWidth>
         <DialogTitle>Add New Product</DialogTitle>
         <DialogContent>
           <TextField
@@ -131,6 +131,7 @@ const AddProduct = ({ open, handleClose, uploadProduct, isLoading }) => {
         <DialogActions>
           <LoadingButton onClick={handleClose}>Cancel</LoadingButton>
           <LoadingButton
+            disabled={!name || !description || !price || !category}
             loading={isLoading}
             onClick={createProduct}
             variant="contained"
