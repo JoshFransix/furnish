@@ -53,9 +53,7 @@ const Explore = ({ products, loading, deleteItem }: ExploreProps) => {
     },
   ]);
 
-  const [activeProducts, setActiveProducts] = useState<Array<Object>>(
-    products | []
-  );
+  const [activeProducts, setActiveProducts] = useState<Array<Object>>(products);
 
   const handleChange = (event: SelectChangeEvent) => {
     setSelectedFilter(event.target.value as String);
