@@ -17,10 +17,10 @@ interface ExploreProps {
 }
 
 const Explore = ({ products, loading, deleteItem }: ExploreProps) => {
-  const [selectedFilter, setSelectedFilter] = useState<string>("category");
-  const [catValue, setCatValue] = useState<string>("all");
-  const [priceValue, setPriceValue] = useState<string>("low-high");
-  const [categoryOptions] = useState<array>([
+  const [selectedFilter, setSelectedFilter] = useState<String>("category");
+  const [catValue, setCatValue] = useState<String>("all");
+  const [priceValue, setPriceValue] = useState<String>("low-high");
+  const [categoryOptions] = useState<Array>([
     {
       label: "All",
       value: "all",
@@ -42,7 +42,7 @@ const Explore = ({ products, loading, deleteItem }: ExploreProps) => {
       value: "living",
     },
   ]);
-  const [priceOptions] = useState<array>([
+  const [priceOptions] = useState<Array>([
     {
       label: "Low to High",
       value: "low-high",
@@ -53,17 +53,17 @@ const Explore = ({ products, loading, deleteItem }: ExploreProps) => {
     },
   ]);
 
-  const [activeProducts, setActiveProducts] = useState<array>(products | []);
+  const [activeProducts, setActiveProducts] = useState<Array>(products | []);
 
   const handleChange = (event: SelectChangeEvent) => {
-    setSelectedFilter(event.target.value as string);
+    setSelectedFilter(event.target.value as String);
   };
 
-  const handleCat = (event: React.SyntheticEvent, newValue: string) => {
-    setCatValue(newValue as string);
+  const handleCat = (event: React.SyntheticEvent, newValue: String) => {
+    setCatValue(newValue as String);
   };
-  const handlePrice = (event: React.SyntheticEvent, newValue: string) => {
-    setPriceValue(newValue as string);
+  const handlePrice = (event: React.SyntheticEvent, newValue: String) => {
+    setPriceValue(newValue as String);
   };
 
   useEffect(() => {

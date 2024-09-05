@@ -27,7 +27,7 @@ const AddProduct = ({
   uploadProduct,
   isLoading,
 }: AddProductProps) => {
-  const [categoryOptions] = useState<array>([
+  const [categoryOptions] = useState<Array>([
     {
       label: "Bedroom",
       value: "bed",
@@ -46,14 +46,14 @@ const AddProduct = ({
     },
   ]);
 
-  const [name, setName] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [price, setPrice] = useState<number>(0);
-  const [category, setCategory] = useState<string>("");
-  const [color, setColor] = useState<string>("#CAF3E5");
+  const [name, setName] = useState<String>("");
+  const [description, setDescription] = useState<String>("");
+  const [price, setPrice] = useState<Number>(0);
+  const [category, setCategory] = useState<String>("");
+  const [color, setColor] = useState<String>("#CAF3E5");
 
   const handleChange = (event: SelectChangeEvent) => {
-    setCategory(event.target.value as string);
+    setCategory(event.target.value as String);
   };
 
   const createProduct = () => {

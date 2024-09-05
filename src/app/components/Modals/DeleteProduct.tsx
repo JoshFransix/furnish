@@ -14,9 +14,9 @@ type DeleteProps = {
 };
 
 const DeleteProduct = ({ productId, open, handleClose, deleteItem }) => {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<Boolean>(false);
 
-  const handleDelete = (productId: string) => {
+  const handleDelete = (productId: String) => {
     // Implement the deletion logic here
     setLoading(true);
     deleteItem(productId);

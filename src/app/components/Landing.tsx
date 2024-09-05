@@ -11,11 +11,11 @@ import Header from "./Header";
 const Landing = () => {
   const [products, setProducts] = Products();
 
-  const [fetching, setIsFetching] = useState<boolean>(true);
-  const [loading, setIsLoading] = useState<boolean>(false);
-  const [open, setOpen] = useState<boolean>(false);
+  const [fetching, setIsFetching] = useState<Boolean>(true);
+  const [loading, setIsLoading] = useState<Boolean>(false);
+  const [open, setOpen] = useState<Boolean>(false);
 
-  const [imageOptions] = useState<array>([
+  const [imageOptions] = useState<Array>([
     "arm-chair.png",
     "mattress.png",
     "dining-chair.png",
@@ -57,7 +57,7 @@ const Landing = () => {
     }
   };
 
-  const deleteItem = async (id: string) => {
+  const deleteItem = async (id: String) => {
     let newProducts = await products.filter(
       (product: Object) => product.id !== id
     );

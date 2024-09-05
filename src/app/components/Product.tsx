@@ -26,9 +26,9 @@ const Product = ({
   color = "#CAF3E5",
   deleteItem,
 }: ProductProps) => {
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<Boolean>(false);
 
-  const trimText = (text: string) => {
+  const trimText = (text: String) => {
     if (text.length > 18) {
       return text.substring(0, 18) + "...";
     }
