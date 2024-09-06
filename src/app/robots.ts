@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/private/",
     },
-    sitemap: "https://furnish-e1u7.onrender.com/sitemap.xml",
+    sitemap: "https://furnish-five.vercel.app//sitemap.xml",
   };
 }
