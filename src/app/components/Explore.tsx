@@ -11,15 +11,15 @@ import Skeleton from "@mui/material/Skeleton";
 import Product from "./Product";
 
 interface ExploreProps {
-  products: Array<Object>;
-  loading: Boolean;
-  deleteItem: () => void;
+  products: Array<IProduct>;
+  loading: boolean;
+  deleteItem: (id: string) => void;
 }
 
 const Explore = ({ products, loading, deleteItem }: ExploreProps) => {
-  const [selectedFilter, setSelectedFilter] = useState<String>("category");
-  const [catValue, setCatValue] = useState<String>("all");
-  const [priceValue, setPriceValue] = useState<String>("low-high");
+  const [selectedFilter, setSelectedFilter] = useState<string>("category");
+  const [catValue, setCatValue] = useState<string>("all");
+  const [priceValue, setPriceValue] = useState<string>("low-high");
   const [categoryOptions] = useState<Array<Object>>([
     {
       label: "All",
@@ -53,17 +53,18 @@ const Explore = ({ products, loading, deleteItem }: ExploreProps) => {
     },
   ]);
 
-  const [activeProducts, setActiveProducts] = useState<Array<Object>>(products);
+  const [activeProducts, setActiveProducts] =
+    useState<Array<IProduct>>(products);
 
   const handleChange = (event: SelectChangeEvent) => {
-    setSelectedFilter(event.target.value as String);
+    setSelectedFilter(event.target.value as string);
   };
 
-  const handleCat = (event: React.SyntheticEvent, newValue: String) => {
-    setCatValue(newValue as String);
+  const handleCat = (event: React.SyntheticEvent, newValue: string) => {
+    setCatValue(newValue as string);
   };
-  const handlePrice = (event: React.SyntheticEvent, newValue: String) => {
-    setPriceValue(newValue as String);
+  const handlePrice = (event: React.SyntheticEvent, newValue: string) => {
+    setPriceValue(newValue as string);
   };
 
   useEffect(() => {
@@ -71,24 +72,24 @@ const Explore = ({ products, loading, deleteItem }: ExploreProps) => {
       const filteredProducts = products;
       priceValue === "low-high"
         ? filteredProducts.sort(
-            (a, b) => parseFloat(b.price) - parseFloat(a.price)
+            (a: any, b: any) => parseFloat(b.price) - parseFloat(a.price)
           )
         : filteredProducts.sort(
-            (a, b) => parseFloat(a.price) - parseFloat(b.price)
+            (a: any, b: any) => parseFloat(a.price) - parseFloat(b.price)
           );
-      setActiveProducts(filteredProducts as Array);
+      setActiveProducts(filteredProducts as Array<IProduct>);
     }
   }, [selectedFilter, priceValue]);
 
   useEffect(() => {
     if (selectedFilter === "category") {
       if (catValue === "all") {
-        setActiveProducts(products as Array);
+        setActiveProducts(products as Array<IProduct>);
       } else {
         let filteredProducts = products.filter(
           (product) => product.category === catValue
         );
-        setActiveProducts(filteredProducts as Array);
+        setActiveProducts(filteredProducts as Array<IProduct>);
       }
     }
   }, [selectedFilter, catValue]);
@@ -119,8 +120,13 @@ const Explore = ({ products, loading, deleteItem }: ExploreProps) => {
       {/* Tab Filters */}
       <div className="py-4">
         {selectedFilter === "category" ? (
-          <Tabs value={catValue} onChange={handleCat}>
-            {categoryOptions.map((option) => (
+          <Tabs
+            scrollButtons
+            value={catValue}
+            onChange={handleCat}
+            variant="scrollable"
+          >
+            {categoryOptions.map((option: any) => (
               <Tab
                 key={option.value}
                 label={option.label}
@@ -129,8 +135,13 @@ const Explore = ({ products, loading, deleteItem }: ExploreProps) => {
             ))}
           </Tabs>
         ) : (
-          <Tabs value={priceValue} onChange={handlePrice}>
-            {priceOptions.map((option) => (
+          <Tabs
+            scrollButtons
+            value={priceValue}
+            onChange={handlePrice}
+            variant="scrollable"
+          >
+            {priceOptions.map((option: any) => (
               <Tab
                 key={option.value}
                 label={option.label}
@@ -147,13 +158,13 @@ const Explore = ({ products, loading, deleteItem }: ExploreProps) => {
               <Skeleton
                 animation="wave"
                 key={index}
-                variant="rect"
+                variant="rectangular"
                 height={450}
                 sx={{ borderRadius: "20px" }}
               />
             ))
           : !loading &&
-            activeProducts?.map((product) => (
+            activeProducts?.map((product: any) => (
               <Product
                 id={product.id}
                 key={product.id}
@@ -162,7 +173,7 @@ const Explore = ({ products, loading, deleteItem }: ExploreProps) => {
                 color={product.color}
                 price={product.price}
                 image={product.image}
-                deleteItem={deleteItem}
+                deleteItem={(value: string) => deleteItem(value)}
               />
             ))}
       </div>

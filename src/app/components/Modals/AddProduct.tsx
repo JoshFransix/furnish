@@ -15,10 +15,10 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 
 interface AddProductProps {
-  open: Boolean;
+  open: boolean;
   handleClose: () => void;
-  uploadProduct: () => void;
-  isLoading: Boolean;
+  uploadProduct: (data: any) => void;
+  isLoading: boolean;
 }
 
 const AddProduct = ({
@@ -46,14 +46,14 @@ const AddProduct = ({
     },
   ]);
 
-  const [name, setName] = useState<String>("");
-  const [description, setDescription] = useState<String>("");
-  const [price, setPrice] = useState<Number>(0);
-  const [category, setCategory] = useState<String>("");
-  const [color, setColor] = useState<String>("#CAF3E5");
+  const [name, setName] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [price, setPrice] = useState<number>(0);
+  const [category, setCategory] = useState<string>("");
+  const [color, setColor] = useState<string>("#CAF3E5");
 
   const handleChange = (event: SelectChangeEvent) => {
-    setCategory(event.target.value as String);
+    setCategory(event.target.value as string);
   };
 
   const createProduct = () => {
@@ -92,7 +92,7 @@ const AddProduct = ({
           <TextareaAutosize
             minRows={3}
             value={description}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            onChange={(event) => {
               setDescription(event.target.value);
             }}
             className="w-full border mt-3 border-primary-200 text-sm leading-normal p-3 rounded-lg shadow-slate-100 outline-none"
@@ -101,7 +101,7 @@ const AddProduct = ({
           />
           <TextField
             value={price}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            onChange={(event: any) => {
               setPrice(event.target.value);
             }}
             placeholder="Enter price of product..."
@@ -119,7 +119,7 @@ const AddProduct = ({
               placeholder="Select a category"
               onChange={handleChange}
             >
-              {categoryOptions.map((option) => (
+              {categoryOptions.map((option: any) => (
                 <MenuItem key={option.value} value={option.value}>
                   {option.label}
                 </MenuItem>

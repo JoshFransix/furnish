@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Header from "../.././components/Header";
 import Products from "@/utils/Products";
-import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
@@ -12,7 +11,7 @@ import AddIcon from "@mui/icons-material/Add";
 const ProductDetails = () => {
   const params = useParams<{ id: string }>();
   const [products] = Products();
-  const [product, setProduct] = useState<object>();
+  const [product, setProduct] = useState<IProduct>();
   const [amount, setAmount] = useState<number>(1);
 
   const update = (value: string) => {
@@ -21,19 +20,19 @@ const ProductDetails = () => {
       newAmount = newAmount += 1;
     }
     if (value === "decrease") {
-      if (value === 1) {
+      if (amount === 1) {
         return;
       } else {
         newAmount = newAmount -= 1;
       }
     }
 
-    setAmount(newAmount as Number);
+    setAmount(newAmount as number);
   };
 
   useEffect(() => {
-    const activeProduct = products.find((p: Object) => p.id === params.id);
-    setProduct(activeProduct as Object);
+    const activeProduct = products.find((p: IProduct) => p.id === params.id);
+    setProduct(activeProduct as IProduct);
   }, []);
 
   return (

@@ -11,9 +11,9 @@ import Header from "./Header";
 const Landing = () => {
   const [products, setProducts] = Products();
 
-  const [fetching, setIsFetching] = useState<Boolean>(true);
-  const [loading, setIsLoading] = useState<Boolean>(false);
-  const [open, setOpen] = useState<Boolean>(false);
+  const [fetching, setIsFetching] = useState<boolean>(true);
+  const [loading, setIsLoading] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const [imageOptions] = useState<Array<String>>([
     "arm-chair.png",
@@ -29,7 +29,7 @@ const Landing = () => {
   };
 
   const uploadProduct = async (product: any) => {
-    setIsLoading(true as Boolean);
+    setIsLoading(true as boolean);
     const data = {
       image: selectRandomImage(),
       ...product,
@@ -43,36 +43,38 @@ const Landing = () => {
     if (apiProduct) {
       let newProducts = products;
       newProducts.push(apiProduct as Object);
-      setProducts(newProducts as Array);
+      setProducts(newProducts as Array<IProduct>);
 
       setTimeout(() => {
-        setIsFetching(true as Boolean);
-        setIsLoading(false as Boolean);
-        setOpen(false as Boolean);
+        setIsFetching(true as boolean);
+        setIsLoading(false as boolean);
+        setOpen(false as boolean);
       }, 2000);
 
       setTimeout(() => {
-        setIsFetching(false as Boolean);
+        setIsFetching(false as boolean);
       }, 3000);
     }
   };
 
-  const deleteItem = async (id: String) => {
-    let newProducts = await products.filter((product) => product.id !== id);
-    setProducts(newProducts as Array);
+  const deleteItem = async (id: string) => {
+    let newProducts = await products.filter(
+      (product: IProduct) => product.id !== id
+    );
+    setProducts(newProducts as Array<IProduct>);
 
     setTimeout(() => {
-      setIsFetching(true as Boolean);
+      setIsFetching(true as boolean);
     }, 2000);
 
     setTimeout(() => {
-      setIsFetching(false as Boolean);
+      setIsFetching(false as boolean);
     }, 3000);
   };
 
   useEffect(() => {
     setTimeout(() => {
-      setIsFetching(false as Boolean);
+      setIsFetching(false as boolean);
     }, 3000);
   }, []);
 

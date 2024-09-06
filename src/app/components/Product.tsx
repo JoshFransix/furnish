@@ -8,13 +8,13 @@ import PreviewIcon from "@mui/icons-material/Preview";
 import DeleteProduct from "./Modals/DeleteProduct";
 
 interface ProductProps {
-  id: String;
-  title: String;
-  image: String;
-  description: String;
+  id: string;
+  title: string;
+  image: string;
+  description: string;
   price: Number;
-  color?: String; // Optional prop to set custom color for product background. Default is #CAF3E5.
-  deleteItem: () => void;
+  color?: string; // Optional prop to set custom color for product background. Default is #CAF3E5.
+  deleteItem: (id: string) => void;
 }
 
 const Product = ({
@@ -26,7 +26,7 @@ const Product = ({
   color = "#CAF3E5",
   deleteItem,
 }: ProductProps) => {
-  const [open, setOpen] = useState<Boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const trimText = (text: String) => {
     if (text.length > 18) {
@@ -49,7 +49,7 @@ const Product = ({
       <div className="text-primary-200 mt-6">
         <h2 className=" font-semibold ">{trimText(title)}</h2>
         <p className="mt-2 text-sm">{trimText(description)}</p>
-        <h3 className="mt-2 font-semibold ">${price}</h3>
+        <h3 className="mt-2 font-semibold ">${Number(price)}</h3>
       </div>
 
       <div className="flex justify-around mt-6 border-black py-2 border-y-[1px]">

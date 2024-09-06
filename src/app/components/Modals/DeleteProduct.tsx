@@ -7,16 +7,21 @@ import DialogTitle from "@mui/material/DialogTitle";
 import LoadingButton from "@mui/lab/LoadingButton";
 
 type DeleteProps = {
-  productId: String;
-  open: Boolean;
+  productId: string;
+  open: boolean;
   handleClose: () => void;
-  deleteItem: () => void;
+  deleteItem: (data: string) => void;
 };
 
-const DeleteProduct = ({ productId, open, handleClose, deleteItem }) => {
-  const [loading, setLoading] = useState<Boolean>(false);
+const DeleteProduct = ({
+  productId,
+  open,
+  handleClose,
+  deleteItem,
+}: DeleteProps) => {
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const handleDelete = (productId: String) => {
+  const handleDelete = (productId: string) => {
     // Implement the deletion logic here
     setLoading(true);
     deleteItem(productId);
@@ -24,7 +29,7 @@ const DeleteProduct = ({ productId, open, handleClose, deleteItem }) => {
     setTimeout(() => {
       setLoading(false);
       handleClose();
-    }, [2000]);
+    }, 2000);
   };
 
   return (
