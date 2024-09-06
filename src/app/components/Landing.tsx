@@ -35,7 +35,7 @@ const Landing = () => {
       ...product,
     };
 
-    const response = await fetch("http://localhost:3000/api", {
+    const response = await fetch("/api", {
       method: "POST",
       body: JSON.stringify(data as Object),
     });
